@@ -1,0 +1,51 @@
+---
+title: "695 Assignment"
+author: "Haijia Yuan"
+date: "8/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(readr)
+```
+
+## Research Question
+What's the corrolation between occupation and income & industry and income?
+
+```{r,message = FALSE, warning=FALSE, echo = FALSE, include=FALSE}
+getwd()
+setwd("/Users/seajiaying/Desktop")
+list.files()
+Income <- read_csv("/Users/seajiaying/Desktop/income.csv")
+#View(Income)
+
+df <- Income
+df <- na.omit(df)
+
+
+```
+
+### Summary of income
+After reduce the NA data. Dataset "df" contains 119 obs. of 8 variables. 
+
+```{r cars}
+summary(df)
+str(df)
+```
+
+```{r industry}
+counts <- table(df$Industry)
+barplot(counts, main="Industry", 
+   xlab="Number of Industry")
+
+```
+
+```{r pie}
+df1 <- data.frame(df$Industry, df$All_weekly)
+colnames(df1) <- c("Occupation","All_weekly Income")
+#head(df1)
+
+
+```
